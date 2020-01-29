@@ -62,8 +62,8 @@ We choose to create such a deformed polygon because it works on the current fron
 
 It's certainly unrealistic to expect any given library to display deformed faces.
 
-Take the case of the piece of shit babylon js. It is supposed to be a 3D rendering library and it cannot fucking display
- a fucking concave polygon. Such is the state of open source software today.
+Take the case of babylon js trash. It is supposed to be a 3D rendering library and it cannot display
+ a bleeping concave polygon. Such is the state of open source software today.
 
 However it is fair to say that deformed polygons are a good choice on itself even if they require further processing
 (such as triangulation) before some graphical library can correctly render them.
@@ -105,14 +105,14 @@ in the second position (this is irrelevant to other rendering libraries unless t
 of vertices).
 
 - Even in the flat rendering, for partially hidden faces, the faces are rendered whole. This is due to the fact
-that a fucking graphical library (babylon) cannot fucking correctly display concave faces!!
+that a graphical library (babylon) cannot bleeping correctly display concave faces!!
 
 This is a blessing in disguise, though, because that shortcoming can be bypassed by doing a "layered" rendering,
 which is a compromise rendering that doesn't show a perfectly an ideal flat figure, but a slightly three dimensional
 one on close inspection and it still allows precission when defining the folds. Remember the reason we cannot just
 use three dimensional rendering everywhere is because it makes it harder to define folds.
 
-I should end by thanking the gods that this fucking piece of shit has allowed me so far to find a barely decent way to
+At least the trash that is babylon js has allowed me so far to find a barely decent way to
 bypass its shortcomings and make something usable.
 
 Look at the FaceTweaker class for more info.
@@ -121,32 +121,32 @@ Flat Rendering
 ==============
 Here is the flat rendering algorithm in case I ever want to use it.
 
-//   @JvmStatic fun flatRendering(figure: Figure): DisplayableFigure =
-//           flatRendering(figure, false, 0.0)
-//   @JvmStatic fun flatRendering(figure: Figure, pushLayersApart: Double): DisplayableFigure =
-//           flatRendering(figure, true, pushLayersApart)
-//	private fun flatRendering(figure: Figure, shouldPushLayers: Boolean, pushLayersApart: Double): DisplayableFigure {
-//		val polygons: MutableMap<Color, MutableSet<OneSidedPolygon>> = mutableMapOf()
-//		for(bundle in figure.bundles){
-//         val comingFromTheTop = bundle.normal
-//         val visibleBundle = VisibleBundle(bundle)
-//         visibleBundle.visiblePolygonsFromTop.forEach {
-//            val visiblePolygon =
-//              if(shouldPushLayers)
-//                 push(it, comingFromTheTop, pushLayersApart)
-//               else it
-//            polygons.putIfAbsent(it.color, mutableSetOf())
-//            polygons[it.color]!!.add(visiblePolygon)
-//         }
-//         val comingFromTheBottom = bundle.normal.negate()
-//         visibleBundle.visiblePolygonsFromBottom.forEach {
-//            val visiblePolygon =
-//                    if(shouldPushLayers)
-//                       push(it, comingFromTheBottom, pushLayersApart)
-//                    else it
-//            polygons.putIfAbsent(it.color, mutableSetOf())
-//            polygons[it.color]!!.add(visiblePolygon)
-//         }
-//      }
-//      return makeDisplayableFigure(polygons)
-//	}
+   @JvmStatic fun flatRendering(figure: Figure): DisplayableFigure =
+           flatRendering(figure, false, 0.0)
+   @JvmStatic fun flatRendering(figure: Figure, pushLayersApart: Double): DisplayableFigure =
+           flatRendering(figure, true, pushLayersApart)
+	private fun flatRendering(figure: Figure, shouldPushLayers: Boolean, pushLayersApart: Double): DisplayableFigure {
+		val polygons: MutableMap<Color, MutableSet<OneSidedPolygon>> = mutableMapOf()
+		for(bundle in figure.bundles){
+         val comingFromTheTop = bundle.normal
+         val visibleBundle = VisibleBundle(bundle)
+         visibleBundle.visiblePolygonsFromTop.forEach {
+            val visiblePolygon =
+              if(shouldPushLayers)
+                 push(it, comingFromTheTop, pushLayersApart)
+               else it
+            polygons.putIfAbsent(it.color, mutableSetOf())
+            polygons[it.color]!!.add(visiblePolygon)
+         }
+         val comingFromTheBottom = bundle.normal.negate()
+         visibleBundle.visiblePolygonsFromBottom.forEach {
+            val visiblePolygon =
+                    if(shouldPushLayers)
+                       push(it, comingFromTheBottom, pushLayersApart)
+                    else it
+            polygons.putIfAbsent(it.color, mutableSetOf())
+            polygons[it.color]!!.add(visiblePolygon)
+         }
+      }
+      return makeDisplayableFigure(polygons)
+	}
