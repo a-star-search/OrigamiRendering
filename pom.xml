@@ -26,7 +26,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<kotlin.version>1.2.71</kotlin.version>
-		<log4j.version>2.9.0</log4j.version>
+		<log4j.version>2.16.0</log4j.version>
 		<junit.version>4.12</junit.version>
 		<origami.version>0.0.2-SNAPSHOT</origami.version>
 		<origamifigure.version>0.0.1-SNAPSHOT</origamifigure.version>
